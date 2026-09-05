@@ -73,22 +73,29 @@ export const GDDSection = ({ lang, onOpenFeaturedGDD }) => {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0">
+          <div className="flex flex-col sm:flex-row items-center gap-2.5 shrink-0">
             <button
               onClick={() => onOpenFeaturedGDD(projects[1])}
-              className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-gradient-to-r from-[#f59e0b] to-[#d9532f] hover:from-[#e08e07] hover:to-[#c24624] text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 transition-all hover:scale-105"
+              className="w-full sm:w-auto px-4 py-3 rounded-xl bg-gradient-to-r from-[#f59e0b] to-[#d9532f] hover:from-[#e08e07] hover:to-[#c24624] text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 transition-all hover:scale-105"
             >
               <FileText className="w-4 h-4" />
               <span>{lang === 'id' ? 'GDD Brutal Kitchen (31 Hal)' : 'Brutal Kitchen GDD (31 Pgs)'}</span>
-              <ArrowRight className="w-4 h-4" />
             </button>
 
             <button
               onClick={() => onOpenFeaturedGDD(projects[0])}
-              className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all hover:border-amber-400/40"
+              className="w-full sm:w-auto px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all hover:border-amber-400/40"
             >
               <FileText className="w-4 h-4 text-red-400" />
               <span>{lang === 'id' ? 'GDD B4B1 Ngepet' : 'B4B1 Ngepet GDD'}</span>
+            </button>
+
+            <button
+              onClick={() => onOpenFeaturedGDD(projects[2])}
+              className="w-full sm:w-auto px-4 py-3 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all hover:border-emerald-400/50"
+            >
+              <FileText className="w-4 h-4 text-emerald-400" />
+              <span>{lang === 'id' ? 'GDD Sumpit Guardian' : 'Sumpit Guardian GDD'}</span>
             </button>
           </div>
         </div>

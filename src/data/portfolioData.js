@@ -157,58 +157,63 @@ export const portfolioData = {
     {
       id: "sumpit-guardian",
       title: "Sumpit Guardian: Mie Ayam Edition",
-      genre: "Casual Arcade Defense / Street Food Heritage",
-      status: "Playable Concept & GDD",
-      theme: "Indonesian Street Food Culture",
+      genre: "Action Casual Defense / Top-Down 2D",
+      status: "GDD Versi 1.0 Lengkap",
+      theme: "Indonesian Street Food Culture & Casual Defense",
       themeColor: "#10b981",
       accentBg: "from-emerald-950/40 via-teal-950/30 to-black/80",
       shortDesc: {
-        id: "Game defense kasual yang adiktif! Lindungi semangkuk mie ayam legendaris dari serbuan lalat nakal, semut rakus, dan kucing usil menggunakan kelihaian menjepit sumpit bambu tradisional.",
-        en: "An addictive casual defense arcade game! Guard an iconic bowl of Indonesian Mie Ayam from relentless flies, greedy ants, and mischievous street cats using traditional bamboo chopsticks."
+        id: "Game action casual defense top-down 2D di Unity karya Feri Yusgiantoro. Semangkuk mie ayam panas baru saja dihidangkan, tapi kawanan hama (Lalat, Semut, Kecoa, Ulat, Tawon, Cicak) datang menyerang! Pemain memegang sumpit (Jepit, Pukul, Charge Sweep) untuk menjaga 100 HP Cleanliness mie ayam sampai habis dimakan.",
+        en: "A top-down 2D action casual defense game built in Unity by Feri Yusgiantoro. Guard a freshly served steaming bowl of Indonesian Mie Ayam from aggressive pest waves (Flies, Ants, Roaches, Caterpillars, Wasps, and Lizards) using tactile chopstick controls (Pinch, Smack, Charge Sweep) to protect 100 HP Cleanliness."
       },
-      tags: ["Unity", "2D Physics", "Casual Gameplay", "Food Culture", "Particle FX", "GDD Complete"],
+      tags: ["Unity 2D", "Top-Down 2D", "Casual Defense", "Food Heritage", "Adaptive Difficulty", "GDD Complete", "Mobile & PC"],
       bannerSvg: "sumpit_guardian",
       features: [
         {
-          titleId: "Presisi Tepukan Sumpit",
-          titleEn: "Chopstick Flick Precision",
-          descId: "Sentuh, jepit, atau tepuk hama dengan timing presisi. Multi-combo memberikan bonus multiplier skor koin gerobak.",
-          descEn: "Tap, pinch, and flick pests with precise timing. Multi-combos yield massive coin multiplier bonuses."
+          titleId: "Mekanika Sumpit (Jepit, Pukul, Charge)",
+          titleEn: "Tactile Chopstick Control (Pinch, Smack, Charge)",
+          descId: "Sumpit mengikuti kursor dengan lerp natural. Klik Kiri untuk jepit hama kecil, Klik Kanan untuk pukul hama besar, dan Hold/Scroll untuk Charge Jepit sweep semut bergerombol.",
+          descEn: "Chopsticks follow cursor with natural lerp lag. Left Click to pinch small pests, Right Click to smack large bugs, and Hold to Charge Sweep marching ant groups."
         },
         {
-          titleId: "Kekuatan Bumbu Meja (Power-Ups)",
-          titleEn: "Condiment Power-Ups",
-          descId: "Sambal Pedas Mampus (Area Blast), Kuah Kaldu Panas (Slow Motion Wave), dan Kerupuk Pangsit (Shield Perlindungan Mangkuk).",
-          descEn: "Extra Spicy Sambal (AOE Blast), Steaming Broth (Slow Motion), and Crispy Wonton Crackers (Bowl Shield)."
+          titleId: "Komponen Makanan & Cleanliness (100 HP)",
+          titleEn: "Food Components & 100 HP Cleanliness",
+          descId: "Objek lindungan memiliki distribusi HP: Mangkuk Mie (40 HP), Ayam Suwir (25 HP), Bakso (15 HP), Cakwe (10 HP), Sambal & Kecap (10 HP).",
+          descEn: "Target food has discrete HP values: Noodle Bowl (40 HP), Shredded Chicken (25 HP), Meatballs (15 HP), Cakwe (10 HP), Sambal (10 HP)."
         },
         {
-          titleId: "Variasi Mangkuk Kuliner Nusantara",
-          titleEn: "Iconic Street Food Skins",
-          descId: "Unlock gerobak vintage, mangkuk ayam jago legendaris, topping bakso urat, ceker pedas, hingga pangsit basah.",
-          descEn: "Unlock legendary rooster bowls, vintage street carts, beef meatball toppings, and braised chicken delicacies."
+          titleId: "Adaptive Difficulty (5 Tier) & 4 Event Khusus",
+          titleEn: "Adaptive 5-Tier Difficulty & Special Events",
+          descId: "Sistem kesulitan dinamis bereaksi terhadap Hit Rate & Reaksi pemain (Tier 1 Dapur Bersih s/d Tier 5 Mimpi Buruk) + Event Hujan Semut & Serangan Fajar.",
+          descEn: "Dynamic difficulty scales based on Hit Rate and Reaction Time (Tier 1 Clean Kitchen to Tier 5 Nightmare) + random events like Ant Rain & Dawn Raid."
         }
       ],
       gddDetails: {
         highConcept: {
-          id: "Game arkade kasual yang merayakan kenikmatan street food mie ayam Indonesia dengan gameplay refleks yang memuaskan untuk semua usia.",
-          en: "A delightful casual arcade celebrating Indonesia's most beloved street food noodle culture with snappy reflex gameplay."
+          id: "Action casual defense bertema kuliner khas Indonesia. Memberikan kepuasan taktil refleks saat menjepit atau memukul hama pengganggu semangkuk mie ayam hangat dengan nuansa audio visual lokal.",
+          en: "An Indonesian culinary-themed action casual defense game offering tactile reflex satisfaction as players pinch and smack pesky bugs off a delicious steaming bowl of noodles."
         },
         coreLoop: {
-          id: "Sajikan Mangkuk Mie Hangat ➔ Tangkis Gelombang Hama dengan Sumpit ➔ Aktifkan Sambal/Kuah Power-Up ➔ Selamatkan Skor Kepuasan Pembeli ➔ Upgrade Resep & Gerobak",
-          en: "Serve Steaming Bowl ➔ Defend against Pest Waves with Chopsticks ➔ Trigger Sambal Blasts ➔ Maximize Customer Satisfaction ➔ Upgrade Cart & Toppings"
+          id: "START Pilih Tingkat ➔ Wave Dimulai (Hama Berdatangan) ➔ Usir Hama dengan Sumpit (Jepit / Pukul / Charge) ➔ Wave Selesai Evaluasi Performa ➔ DifficultyManager Tentukan Tier Dinamis ➔ Wave Berikutnya / Game Over (Cleanliness = 0) ➔ Skor Akhir & Unlockable Skins",
+          en: "START ➔ Wave Begins (Pests Swarm) ➔ Defend Food with Chopsticks (Pinch / Smack / Charge) ➔ Wave Clear & Performance Evaluation ➔ DifficultyManager Dynamic Tier ➔ Next Wave / Game Over ➔ Final High Score & Unlockable Skins"
         },
-        targetAudience: "Casual mobile gamers, pecinta kuliner Indonesia, dan penikmat game bertempo santai namun menantang.",
+        targetAudience: "Semua usia, casual mobile & PC gamers, pecinta kuliner street food Indonesia (durasi sesi 5-15 menit).",
         keySystems: [
-          { name: "Pest Wave Spawning Logic", detail: "Lalat manuver spiral cepat, semut merayap bergerombol di pinggir mangkuk, tangan kucing mencoba mencuri bakso." },
-          { name: "Heat & Freshness Meter", detail: "Mie harus dihabiskan dalam kondisi prima; hama mengurangi kenikmatan estetika kuah." },
-          { name: "Nusantara Street Food Gacha", detail: "Sistem koleksi topping: Bakso Halus, Pangsit Goreng, Ceker Kecap, Acar Mentimun." }
+          { name: "Sistem 6 Hama (Enemy Ecosystem)", detail: "Lalat (Tier 1 summoner), Semut (Tier 1 horde), Kecoa (Tier 2 HP 3 speed up), Ulat (Tier 2 -15 HP penalti), Tawon (Tier 3 dive attack 0.5s), Cicak (Tier 4 spesial HP 5 drain pasif)." },
+          { name: "Sistem Skor & Multiplier", detail: "Lalat 10 pts, Semut 5 pts, Kecoa 30 pts, Ulat 25 pts, Tawon 40 pts, Cicak 80 pts. Combo x5 (x1.5), Combo x10 (x2), Cleanliness 100% (+200 bonus), Perfect Wave (+500)." },
+          { name: "Progression & Unlockable Skins", detail: "Sumpit Bambu (Default), Sumpit Merah (Aura Merah), Sumpit Emas (Partikel Bintang), Sumpit Naga (Trail Naga) + Background Warung Sederhana, Restoran Bersih, Dapur Mewah." }
         ],
         documentSections: [
-          "1. Core Vision & Cultural Resonance",
-          "2. Tap/Gesture Input Mapping & Hitboxes",
-          "3. Pest Economy & Difficulty Scaling Curves",
-          "4. Visual Aesthetics: The Legendary Rooster Bowl Lore",
-          "5. Casual Retention & Sound Design (Slurp & Crunch SFX)"
+          "1. Overview & Core Fantasy (Satisfying, Tegang, Bangga, Lokal)",
+          "2. Elemen Makanan Mie Ayam (100 Cleanliness HP Distribution)",
+          "3. Kontrol & Sumpit Physics Feel (Jepit, Pukul, Charge Sweep)",
+          "4. Sistem 6 Hama (Lalat, Semut, Kecoa, Ulat, Tawon, Cicak)",
+          "5. Adaptive Difficulty System (5 Tiers & Aturan Naik/Turun)",
+          "6. Wave Structure & 4 Event Khusus (Hujan Semut, Serangan Fajar)",
+          "7. Sistem Skor & Multiplier Combo",
+          "8. Visual & Audio Design (Gamelan Pop & Responsive SFX)",
+          "9. Progression & Unlockable Skins (Sumpit Naga, Emas, Merah)",
+          "10. Arsitektur Kode Unity (GameManager, ChopsticksController, FoodManager)"
         ]
       }
     }
