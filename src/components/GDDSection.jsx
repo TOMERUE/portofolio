@@ -59,28 +59,38 @@ export const GDDSection = ({ lang, onOpenFeaturedGDD }) => {
           <div className="space-y-2 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 text-xs font-mono-game text-amber-400 font-bold uppercase tracking-wider">
               <Award className="w-4 h-4" />
-              <span>{lang === 'id' ? 'Featured GDD Case Study' : 'Featured GDD Case Study'}</span>
+              <span>{lang === 'id' ? 'Featured GDD Case Studies' : 'Featured GDD Case Studies'}</span>
             </div>
             <h3 className="text-xl sm:text-2xl font-bold text-white font-heading">
               {lang === 'id' 
-                ? 'Studi Kasus Lengkap: B4B1 Ngepet — Stealth System & Candle Economy' 
-                : 'Full Case Study: B4B1 Ngepet — Stealth System & Candle Economy'}
+                ? 'Dokumentasi Desain Lengkap: Brutal Kitchen & B4B1 Ngepet' 
+                : 'Comprehensive Design Specs: Brutal Kitchen & B4B1 Ngepet'}
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 max-w-2xl">
               {lang === 'id'
-                ? 'Pelajari bagaimana pilar folklore pesugihan, dual-management lilin ritual, dan AI patrol Hansip dirancang secara matematis dalam dokumen desain resmi.'
-                : 'Explore how Indonesian folklore pesugihan, dual-management candle rituals, and Hansip stealth AI are designed systematically in the full GDD spec.'}
+                ? 'Pelajari bagaimana pilar survival 20 Wave, sistem 6 senjata, sinergi item liar, serta mekanika stealth LOS dan ekonomi koin dirancang secara mendalam dalam dokumen desain resmi.'
+                : 'Explore how 20-wave survival pacing, 6-weapon systems, item synergies, and stealth LOS AI are meticulously documented in official GDD specs.'}
             </p>
           </div>
 
-          <button
-            onClick={() => onOpenFeaturedGDD(projects[0])}
-            className="shrink-0 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#d9532f] to-[#f59e0b] hover:from-[#c24624] hover:to-[#e08e07] text-white font-semibold text-sm flex items-center gap-2 shadow-lg shadow-amber-500/20 transition-all hover:scale-105"
-          >
-            <FileText className="w-4 h-4" />
-            <span>{lang === 'id' ? 'Buka Dokumen GDD Lengkap' : 'Open Full GDD Breakdown'}</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
+          <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0">
+            <button
+              onClick={() => onOpenFeaturedGDD(projects[1])}
+              className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-gradient-to-r from-[#f59e0b] to-[#d9532f] hover:from-[#e08e07] hover:to-[#c24624] text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 transition-all hover:scale-105"
+            >
+              <FileText className="w-4 h-4" />
+              <span>{lang === 'id' ? 'GDD Brutal Kitchen (31 Hal)' : 'Brutal Kitchen GDD (31 Pgs)'}</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+
+            <button
+              onClick={() => onOpenFeaturedGDD(projects[0])}
+              className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all hover:border-amber-400/40"
+            >
+              <FileText className="w-4 h-4 text-red-400" />
+              <span>{lang === 'id' ? 'GDD B4B1 Ngepet' : 'B4B1 Ngepet GDD'}</span>
+            </button>
+          </div>
         </div>
 
       </div>

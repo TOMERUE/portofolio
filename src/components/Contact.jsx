@@ -157,7 +157,7 @@ export const Contact = ({ lang }) => {
                     <MessageSquare className="w-4 h-4 text-[#5865F2]" />
                     <span className="text-xs font-bold text-slate-200">Discord</span>
                   </div>
-                  <span className="text-[11px] font-mono-game text-slate-400">@feridev</span>
+                  <span className="text-[11px] font-mono-game text-slate-300 font-medium">{profile.socials.discord}</span>
                 </div>
               </div>
             </div>
