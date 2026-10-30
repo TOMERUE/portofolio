@@ -23,7 +23,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0c1017] text-[#f1f5f9] selection:bg-[#d9532f] selection:text-white flex flex-col font-sans">
+    <div className="min-h-screen bg-paper text-ink flex flex-col font-sans">
       {/* Navigation Bar */}
       <Navbar lang={lang} setLang={setLang} />
 

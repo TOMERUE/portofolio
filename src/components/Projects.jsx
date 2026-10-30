@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Gamepad2, FileText, Sparkles, ArrowRight, CheckCircle2, Eye, Tag, Layers } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import { GameArtIllustration } from './GameArtIllustrations';
 import { MiniGameTeaser } from './MiniGameTeaser';
@@ -9,7 +9,7 @@ export const Projects = ({ lang, onSelectProject }) => {
   const [selectedFilter, setSelectedFilter] = useState('all');
 
   const filterOptions = [
-    { id: 'all', labelId: 'Semua Proyek (3)', labelEn: 'All Projects (3)' },
+    { id: 'all', labelId: 'Semua (3)', labelEn: 'All (3)' },
     { id: 'folklore', labelId: 'Folklore & Mistis', labelEn: 'Folklore & Myths' },
     { id: 'roguelike', labelId: 'Roguelike & Horror', labelEn: 'Roguelike & Horror' },
     { id: 'streetfood', labelId: 'Street Food & Kasual', labelEn: 'Street Food & Casual' }
@@ -24,42 +24,41 @@ export const Projects = ({ lang, onSelectProject }) => {
   });
 
   return (
-    <section id="projects" className="py-24 relative bg-[#0c1017] bg-batik-grid">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-amber-500/30 text-xs font-mono-game text-amber-400">
-            <Gamepad2 className="w-3.5 h-3.5" />
-            <span>{lang === 'id' ? 'PORTOFOLIO GAME & GDD' : 'GAME PROJECTS & GDD'}</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white font-heading tracking-tight">
-            {lang === 'id' ? (
-              <>
-                Karya & Eksplorasi <span className="text-gradient-fire">Game Design</span>
-              </>
-            ) : (
-              <>
-                Featured <span className="text-gradient-fire">Game Design</span> Concepts
-              </>
-            )}
-          </h2>
-          <p className="text-slate-400 text-sm sm:text-base">
-            {lang === 'id' 
-              ? 'Tiga konsep game unggulan berbasis Unity yang memadukan keunikan budaya lokal, sistem mekanika mendalam, dan dokumentasi GDD terstruktur.' 
-              : 'Three featured Unity game concepts blending authentic local culture, deep mechanical systems, and modular GDD specs.'}
-          </p>
+    <section id="projects" className="py-24 sm:py-28 border-t border-rule">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
 
-          {/* Filter Bar */}
-          <div className="flex flex-wrap items-center justify-center gap-2 pt-4">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+          <div className="max-w-2xl">
+            <div className="eyebrow">02 — {lang === 'id' ? 'Proyek' : 'Projects'}</div>
+            <h2 className="mt-5 font-serif text-3xl sm:text-4xl lg:text-[2.75rem] leading-tight text-ink">
+              {lang === 'id' ? (
+                <>
+                  Karya & eksplorasi{' '}
+                  <em className="italic text-accent">game design.</em>
+                </>
+              ) : (
+                <>
+                  Featured{' '}
+                  <em className="italic text-accent">game design</em> work.
+                </>
+              )}
+            </h2>
+            <p className="mt-4 text-[15px] leading-relaxed text-ink-soft">
+              {lang === 'id'
+                ? 'Tiga konsep game Unity yang memadukan budaya lokal, sistem mekanika mendalam, dan dokumentasi GDD terstruktur.'
+                : 'Three Unity game concepts blending local culture, deep mechanical systems, and structured GDD documentation.'}
+            </p>
+          </div>
+
+          <div className="flex flex-wrap gap-x-5 gap-y-2">
             {filterOptions.map((opt) => (
               <button
                 key={opt.id}
                 onClick={() => setSelectedFilter(opt.id)}
-                className={`px-4 py-2 rounded-xl text-xs font-mono-game transition-all ${
+                className={`font-mono text-[11px] uppercase tracking-[0.1em] pb-1 border-b transition-colors ${
                   selectedFilter === opt.id
-                    ? 'bg-gradient-to-r from-[#d9532f] to-[#f59e0b] text-white font-bold shadow-lg shadow-amber-500/20'
-                    : 'bg-[#141c26] text-slate-400 hover:text-white hover:bg-white/10 border border-white/5'
+                    ? 'border-accent text-accent'
+                    : 'border-transparent text-ink-muted hover:text-ink'
                 }`}
               >
                 {lang === 'id' ? opt.labelId : opt.labelEn}
@@ -68,89 +67,74 @@ export const Projects = ({ lang, onSelectProject }) => {
           </div>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, idx) => (
-            <div
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredProjects.map((project) => (
+            <article
               key={project.id}
-              className="group rounded-2xl glass-card border border-white/10 hover:border-amber-500/40 transition-all duration-300 flex flex-col overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-amber-500/10 hover:-translate-y-1.5"
+              className="group flex flex-col border border-rule bg-paper hover:border-ink transition-colors"
             >
-              {/* Illustration Banner Area */}
-              <div className="relative h-56 w-full overflow-hidden border-b border-white/10 bg-black">
-                <GameArtIllustration type={project.bannerSvg} className="w-full h-full group-hover:scale-105 transition-transform duration-500" />
-                
-                {/* Status Badge overlay */}
-                <div className="absolute top-3 right-3 z-20">
-                  <span className="px-2.5 py-1 rounded-full text-[11px] font-mono-game font-semibold bg-black/80 backdrop-blur-md border border-white/20 text-white flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                    <span>{project.status}</span>
-                  </span>
-                </div>
+              <div className="relative h-52 w-full overflow-hidden border-b border-rule bg-[#14110f]">
+                <GameArtIllustration type={project.bannerSvg} className="w-full h-full" />
+                <span className="absolute top-3 right-3 z-20 font-mono text-[10px] uppercase tracking-[0.1em] px-2 py-1 bg-black/75 text-paper border border-white/20">
+                  {project.status}
+                </span>
               </div>
 
-              {/* Content Area */}
-              <div className="p-6 flex-1 flex flex-col justify-between space-y-5">
-                <div className="space-y-3">
-                  {/* Genre Tag */}
-                  <div className="text-xs font-mono-game text-amber-400 font-semibold tracking-wide">
-                    {project.genre}
-                  </div>
+              <div className="flex-1 flex flex-col p-6">
+                <div className="font-mono text-[10px] uppercase tracking-[0.12em] text-accent">
+                  {project.genre.split('/')[0].trim()}
+                </div>
+                <h3 className="mt-2 font-serif text-xl leading-snug text-ink group-hover:text-accent transition-colors">
+                  {project.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink-soft line-clamp-3">
+                  {lang === 'id' ? project.shortDesc.id : project.shortDesc.en}
+                </p>
 
-                  {/* Title */}
-                  <h3 className="text-xl font-bold text-white font-heading group-hover:text-amber-300 transition-colors">
-                    {project.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-slate-300 text-xs sm:text-sm leading-relaxed line-clamp-3">
-                    {lang === 'id' ? project.shortDesc.id : project.shortDesc.en}
-                  </p>
-
-                  {/* Key Features Quick Bullets */}
-                  <div className="space-y-1.5 pt-2">
-                    {project.features.slice(0, 2).map((feat, fIdx) => (
-                      <div key={fIdx} className="flex items-start gap-2 text-xs text-slate-300">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
-                        <span className="line-clamp-1 font-medium">
-                          {lang === 'id' ? feat.titleId : feat.titleEn}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
+                <div className="mt-5 space-y-1.5">
+                  {project.features.slice(0, 2).map((feat, fIdx) => (
+                    <div key={fIdx} className="flex gap-2 text-[13px] text-ink-soft">
+                      <span className="text-accent">—</span>
+                      <span className="line-clamp-1">{lang === 'id' ? feat.titleId : feat.titleEn}</span>
+                    </div>
+                  ))}
                 </div>
 
-                {/* Bottom Tech Tags & Action */}
-                <div className="space-y-4 pt-4 border-t border-white/10">
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-1.5">
+                <div className="mt-auto pt-6">
+                  <div className="flex flex-wrap gap-x-2 gap-y-1 font-mono text-[10px] text-ink-muted">
                     {project.tags.slice(0, 4).map((tag, tIdx) => (
-                      <span
-                        key={tIdx}
-                        className="text-[11px] px-2 py-0.5 rounded bg-white/5 border border-white/5 text-slate-400 font-mono-game"
-                      >
-                        #{tag}
+                      <span key={tIdx}>
+                        {tag}
+                        {tIdx < 3 && <span className="ml-2 text-rule">·</span>}
                       </span>
                     ))}
                   </div>
 
-                  {/* CTA Button */}
                   <button
                     onClick={() => onSelectProject(project)}
-                    className="w-full py-2.5 px-4 rounded-xl bg-[#172230] hover:bg-gradient-to-r hover:from-[#d9532f] hover:to-[#f59e0b] text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 border border-white/10 hover:border-amber-400/50 transition-all duration-300 shadow-md group-hover:bg-[#202e40]"
+                    className="mt-5 w-full inline-flex items-center justify-between border border-ink px-4 py-2.5 text-[12px] font-medium text-ink hover:bg-ink hover:text-paper transition-colors"
                   >
-                    <FileText className="w-4 h-4 text-amber-400 group-hover:text-white" />
-                    <span>{lang === 'id' ? 'Buka Detail & GDD' : 'Read GDD & Spec Sheet'}</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-white group-hover:translate-x-0.5 transition-transform" />
+                    <span>{lang === 'id' ? 'Buka detail & GDD' : 'Read GDD & spec'}</span>
+                    <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
 
-        {/* Interactive Teaser Banner / Mini Game Section */}
-        <div className="pt-8">
+        <div className="mt-16">
           <MiniGameTeaser lang={lang} />
+        </div>
+
+        <div className="mt-12 flex justify-end">
+          <a
+            href="#gdd"
+            className="inline-flex items-center gap-1.5 text-sm text-ink editorial-link"
+          >
+            {lang === 'id' ? 'Lihat arsitektur dokumentasi GDD' : 'See the GDD documentation framework'}
+            <ArrowUpRight className="w-4 h-4" />
+          </a>
         </div>
 
       </div>

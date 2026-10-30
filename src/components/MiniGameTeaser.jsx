@@ -1,6 +1,27 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Utensils, Zap, Trophy, RotateCcw, Volume2, VolumeX, Sparkles } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Trophy, RotateCcw, Volume2, VolumeX, Zap } from 'lucide-react';
 import confetti from 'canvas-confetti';
+
+const FlyIcon = () => (
+  <svg viewBox="0 0 32 32" className="w-8 h-8">
+    <ellipse cx="9" cy="11" rx="6" ry="3.5" fill="#f3eee4" opacity="0.5" transform="rotate(-28 9 11)" />
+    <ellipse cx="23" cy="11" rx="6" ry="3.5" fill="#f3eee4" opacity="0.5" transform="rotate(28 23 11)" />
+    <ellipse cx="16" cy="18" rx="5.5" ry="8" fill="#2b2823" stroke="#f3eee4" strokeWidth="1.2" />
+    <circle cx="13" cy="15" r="1.6" fill="#b3462a" />
+    <circle cx="19" cy="15" r="1.6" fill="#b3462a" />
+  </svg>
+);
+
+const AntIcon = () => (
+  <svg viewBox="0 0 32 32" className="w-7 h-7">
+    <g stroke="#f3eee4" strokeWidth="1.3" fill="none" strokeLinecap="round">
+      <path d="M16 13 L10 8 M16 13 L22 8 M14 20 L8 24 M18 20 L24 24 M14 16 L8 13 M18 16 L24 13" />
+    </g>
+    <circle cx="16" cy="9" r="3.2" fill="#f3eee4" />
+    <ellipse cx="16" cy="17" rx="3.2" ry="4.6" fill="#f3eee4" />
+    <ellipse cx="16" cy="24" rx="4.2" ry="3.6" fill="#f3eee4" />
+  </svg>
+);
 
 export const MiniGameTeaser = ({ lang }) => {
   const [score, setScore] = useState(0);
@@ -9,15 +30,13 @@ export const MiniGameTeaser = ({ lang }) => {
   const [isSpicyActive, setIsSpicyActive] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [floatingTexts, setFloatingTexts] = useState([]);
-  
-  // Pest list on screen
+
   const [pests, setPests] = useState([
-    { id: 1, type: 'fly', x: 25, y: 35, speed: 1.5 },
-    { id: 2, type: 'fly', x: 65, y: 40, speed: 1.2 },
-    { id: 3, type: 'ant', x: 45, y: 70, speed: 0.8 }
+    { id: 1, type: 'fly', x: 25, y: 35 },
+    { id: 2, type: 'fly', x: 65, y: 40 },
+    { id: 3, type: 'ant', x: 45, y: 70 }
   ]);
 
-  // Floating text timer cleanup
   useEffect(() => {
     if (floatingTexts.length > 0) {
       const timer = setTimeout(() => {
@@ -27,7 +46,6 @@ export const MiniGameTeaser = ({ lang }) => {
     }
   }, [floatingTexts]);
 
-  // Pest repositioning loop
   useEffect(() => {
     const interval = setInterval(() => {
       setPests((prevPests) =>
@@ -51,14 +69,14 @@ export const MiniGameTeaser = ({ lang }) => {
       const gain = ctx.createGain();
       osc.type = 'triangle';
       osc.frequency.setValueAtTime(freq, ctx.currentTime);
-      gain.gain.setValueAtTime(0.15, ctx.currentTime);
+      gain.gain.setValueAtTime(0.12, ctx.currentTime);
       gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
       osc.connect(gain);
       gain.connect(ctx.destination);
       osc.start();
       osc.stop(ctx.currentTime + 0.15);
     } catch (e) {
-      // AudioContext might be restricted until user interacts
+      // AudioContext may be restricted until user interaction
     }
   };
 
@@ -69,19 +87,16 @@ export const MiniGameTeaser = ({ lang }) => {
     const pts = 100 * combo * (isSpicyActive ? 2 : 1);
     const newScore = score + pts;
     const newCombo = combo + 1;
-    
+
     setScore(newScore);
     setCombo(newCombo);
     if (newScore > highScore) setHighScore(newScore);
 
-    // Add floating combo text
-    const rect = e.currentTarget.getBoundingClientRect();
     setFloatingTexts((prev) => [
       ...prev,
-      { id: Date.now(), text: `+${pts} (x${combo})`, x: e.clientX, y: e.clientY }
+      { id: Date.now(), text: `+${pts}`, x: e.clientX, y: e.clientY }
     ]);
 
-    // Respawn pest to random location
     setPests((prev) =>
       prev.map((p) =>
         p.id === pestId
@@ -90,13 +105,12 @@ export const MiniGameTeaser = ({ lang }) => {
       )
     );
 
-    // Milestone confetti
     if (newCombo % 5 === 0) {
       confetti({
         particleCount: 30,
         spread: 60,
         origin: { y: 0.7 },
-        colors: ['#f59e0b', '#d9532f', '#10b981']
+        colors: ['#b3462a', '#59684a', '#d8cfbd']
       });
     }
   };
@@ -111,10 +125,9 @@ export const MiniGameTeaser = ({ lang }) => {
       particleCount: 60,
       spread: 80,
       origin: { y: 0.6 },
-      colors: ['#ef4444', '#f97316', '#fbbf24']
+      colors: ['#b3462a', '#8d341f', '#d8cfbd']
     });
 
-    // Squash all pests instantly
     setPests((prev) =>
       prev.map((p) => ({
         ...p,
@@ -134,50 +147,37 @@ export const MiniGameTeaser = ({ lang }) => {
   };
 
   return (
-    <div className="relative rounded-2xl overflow-hidden glass-card border border-emerald-500/25 p-5 sm:p-7 shadow-2xl">
-      {/* Decorative Glow */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-
-      {/* Header bar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4 mb-5">
+    <div className="border border-ink bg-paper">
+      <div className="flex flex-wrap items-center justify-between gap-4 p-5 sm:p-6 border-b border-rule">
         <div>
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-mono-game uppercase tracking-wider text-emerald-400 font-bold flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>{lang === 'id' ? 'Mini Interactive Teaser' : 'Interactive Mini Teaser'}</span>
-            </span>
-            <span className="text-[10px] bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded-full font-mono-game">
-              Playable Arcade Concept
-            </span>
+          <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent">
+            {lang === 'id' ? 'Teaser interaktif' : 'Interactive teaser'}
           </div>
-          <h3 className="text-lg sm:text-xl font-bold text-white font-heading mt-0.5">
-            Sumpit Guardian: Mie Ayam Defense
+          <h3 className="mt-1 font-serif text-xl text-ink">
+            Sumpit Guardian — Mie Ayam Defense
           </h3>
         </div>
 
-        {/* Stats & Controls */}
-        <div className="flex items-center gap-2 sm:gap-4">
-          <div className="px-3 py-1.5 rounded-lg bg-black/40 border border-white/10 flex items-center gap-2 text-xs font-mono-game">
-            <Trophy className="w-4 h-4 text-amber-400" />
-            <span className="text-slate-400">Score:</span>
-            <span className="text-white font-bold text-sm">{score}</span>
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 font-mono text-[11px] text-ink-muted">
+            <Trophy className="w-3.5 h-3.5" />
+            <span>{highScore}</span>
           </div>
-
-          <div className="px-3 py-1.5 rounded-lg bg-black/40 border border-emerald-500/30 text-emerald-300 text-xs font-mono-game font-bold">
-            Combo x{combo}
+          <div className="font-mono text-[11px] text-ink">
+            {score} <span className="text-ink-muted">/ x{combo}</span>
           </div>
 
           <button
             onClick={() => setSoundEnabled(!soundEnabled)}
-            className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 transition-colors border border-white/10"
+            className="p-1.5 text-ink-muted hover:text-ink transition-colors"
             title={soundEnabled ? 'Mute SFX' : 'Unmute SFX'}
           >
-            {soundEnabled ? <Volume2 className="w-4 h-4 text-emerald-400" /> : <VolumeX className="w-4 h-4 text-slate-500" />}
+            {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
           </button>
 
           <button
             onClick={resetGame}
-            className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 transition-colors border border-white/10"
+            className="p-1.5 text-ink-muted hover:text-ink transition-colors"
             title="Reset"
           >
             <RotateCcw className="w-4 h-4" />
@@ -185,101 +185,84 @@ export const MiniGameTeaser = ({ lang }) => {
         </div>
       </div>
 
-      {/* Game Stage Area */}
-      <div className="relative h-64 sm:h-72 w-full rounded-xl bg-gradient-to-b from-[#0a1812] via-[#0e241c] to-[#08140f] border border-white/10 overflow-hidden cursor-crosshair select-none flex items-center justify-center">
-        {/* Table Wooden Ring Pattern */}
-        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:24px_24px]" />
+      <div className="p-3 sm:p-4">
+        <div className="relative h-64 sm:h-72 w-full bg-ink overflow-hidden cursor-crosshair select-none flex items-center justify-center">
+          <div className="absolute inset-0 opacity-[0.08] bg-[radial-gradient(#f3eee4_1px,transparent_1px)] [background-size:22px_22px]" />
 
-        {/* Center Mie Ayam Bowl Graphic */}
-        <div className="relative w-48 h-48 flex items-center justify-center">
-          <svg viewBox="0 0 200 200" className="w-full h-full filter drop-shadow-[0_10px_25px_rgba(0,0,0,0.8)]">
-            <ellipse cx="100" cy="140" rx="75" ry="30" fill="#2d1305" opacity="0.6" />
-            <path d="M20,80 Q100,165 180,80 Q165,45 100,45 Q35,45 20,80 Z" fill="#f8fafc" stroke="#e2e8f0" strokeWidth="2.5" />
-            {/* Rooster Logo */}
-            <path d="M85,100 Q90,90 100,90 Q110,90 110,100 Q105,106 95,106 Z" fill="#dc2626" />
-            <polygon points="110,95 116,97 111,100" fill="#f59e0b" />
-            {/* Steaming Noodles */}
-            <ellipse cx="100" cy="70" rx="65" ry="24" fill="#fef08a" stroke="#ca8a04" strokeWidth="2" />
-            <circle cx="75" cy="68" r="10" fill="#a8a29e" />
-            <rect x="100" y="58" width="16" height="12" rx="3" fill="#78350f" />
-            <path d="M120,55 Q135,50 145,62 Q130,70 120,62 Z" fill="#16a34a" />
-            <circle cx="100" cy="72" r="6" fill="#ef4444" />
-          </svg>
+          <div className="relative w-44 h-44 flex items-center justify-center">
+            <svg viewBox="0 0 200 200" className="w-full h-full">
+              <ellipse cx="100" cy="140" rx="72" ry="28" fill="#000" opacity="0.35" />
+              <path d="M20,80 Q100,165 180,80 Q165,45 100,45 Q35,45 20,80 Z" fill="#f3eee4" stroke="#d8cfbd" strokeWidth="2" />
+              <path d="M85,100 Q90,90 100,90 Q110,90 110,100 Q105,106 95,106 Z" fill="#b3462a" />
+              <ellipse cx="100" cy="70" rx="62" ry="22" fill="#e9e1d2" stroke="#c3b8a5" strokeWidth="2" />
+              <circle cx="76" cy="68" r="9" fill="#8a8173" />
+              <rect x="100" y="58" width="16" height="12" rx="2" fill="#6b4a2f" />
+              <path d="M120,55 Q135,50 145,62 Q130,70 120,62 Z" fill="#59684a" />
+              <circle cx="100" cy="72" r="5" fill="#b3462a" />
+            </svg>
 
-          {/* Steam FX */}
-          <div className="absolute top-2 w-full flex justify-center gap-4 pointer-events-none opacity-60">
-            <span className="text-xl animate-bounce">♨️</span>
-            <span className="text-xl animate-bounce delay-150">♨️</span>
+            <div className="absolute top-0 w-full flex justify-center gap-4 pointer-events-none">
+              <svg viewBox="0 0 12 30" className="w-3 h-8 opacity-40">
+                <path d="M6 28 Q2 18 6 10 Q10 2 6 -4" stroke="#f3eee4" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+              </svg>
+              <svg viewBox="0 0 12 30" className="w-3 h-8 opacity-30">
+                <path d="M6 28 Q2 18 6 10 Q10 2 6 -4" stroke="#f3eee4" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+              </svg>
+            </div>
           </div>
-        </div>
 
-        {/* Interactive Clickable Pests */}
-        {pests.map((pest) => (
-          <button
-            key={pest.id}
-            onClick={(e) => handleSquashPest(e, pest.id)}
-            style={{ top: `${pest.y}%`, left: `${pest.x}%` }}
-            className="absolute transform -translate-x-1/2 -translate-y-1/2 p-2 group transition-transform duration-300 hover:scale-125 z-20"
-            aria-label="Tepuk Hama Sumpit"
-          >
-            {pest.type === 'fly' ? (
-              <div className="relative flex items-center justify-center">
-                <span className="text-2xl filter drop-shadow-md animate-spin" style={{ animationDuration: '3s' }}>
-                  🪰
-                </span>
-                <span className="absolute -top-1 -right-1 text-[10px] bg-red-600 text-white font-mono-game px-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
-                  TAP!
-                </span>
-              </div>
-            ) : (
-              <div className="relative flex items-center justify-center">
-                <span className="text-2xl filter drop-shadow-md animate-pulse">
-                  🐜
-                </span>
-              </div>
-            )}
-          </button>
-        ))}
+          {pests.map((pest) => (
+            <button
+              key={pest.id}
+              onClick={(e) => handleSquashPest(e, pest.id)}
+              style={{ top: `${pest.y}%`, left: `${pest.x}%` }}
+              className="absolute transform -translate-x-1/2 -translate-y-1/2 p-2 transition-transform duration-300 hover:scale-110 z-20"
+              aria-label={lang === 'id' ? 'Tepuk hama' : 'Squash pest'}
+            >
+              {pest.type === 'fly' ? <FlyIcon /> : <AntIcon />}
+            </button>
+          ))}
 
-        {/* Floating Combat / Score Texts */}
-        {floatingTexts.map((ft) => (
-          <div
-            key={ft.id}
-            style={{ left: ft.x, top: ft.y }}
-            className="fixed pointer-events-none text-amber-300 font-bold font-mono-game text-sm animate-fadeUp z-50 transform -translate-x-1/2 -translate-y-1/2"
-          >
-            {ft.text}
+          {floatingTexts.map((ft) => (
+            <div
+              key={ft.id}
+              style={{ left: ft.x, top: ft.y }}
+              className="fixed pointer-events-none text-paper font-mono text-sm animate-fadeUp z-50"
+            >
+              {ft.text}
+            </div>
+          ))}
+
+          <div className="absolute bottom-3 left-4 right-4 font-mono text-[10px] uppercase tracking-[0.1em] text-paper/50">
+            {lang === 'id'
+              ? 'Klik lalat & semut untuk menangkis dengan sumpit'
+              : 'Click the flies & ants to defend with chopsticks'}
           </div>
-        ))}
-
-        {/* Hint overlay on screen */}
-        <div className="absolute bottom-3 left-4 text-[11px] font-mono-game text-emerald-300/80 bg-black/60 px-3 py-1 rounded-full border border-emerald-500/20 flex items-center gap-1.5">
-          <Utensils className="w-3 h-3 text-amber-400" />
-          <span>{lang === 'id' ? 'Klik hama lalat & semut untuk menangkis dengan sumpit!' : 'Click the flies & ants to defend with chopsticks!'}</span>
         </div>
       </div>
 
-      {/* Bottom Power-Ups Bar */}
-      <div className="mt-4 flex flex-wrap items-center justify-between gap-3 pt-2">
-        <div className="text-xs text-slate-300">
-          <span className="font-semibold text-emerald-400">{lang === 'id' ? 'Mekanika Bumbu Meja:' : 'Condiment Mechanics:'}</span>{' '}
-          {lang === 'id' ? 'Kombinasi combo meningkatkan multiplier skor!' : 'Combos increase score multiplier!'}
+      <div className="flex flex-wrap items-center justify-between gap-4 p-5 sm:p-6 border-t border-rule">
+        <div className="text-[13px] text-ink-soft">
+          <span className="font-medium text-ink">
+            {lang === 'id' ? 'Mekanika bumbu:' : 'Condiment mechanics:'}
+          </span>{' '}
+          {lang === 'id' ? 'combo meningkatkan multiplier skor.' : 'combos increase the score multiplier.'}
         </div>
 
         <button
           onClick={triggerSambalBlast}
           disabled={isSpicyActive}
-          className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold font-mono-game flex items-center gap-2 transition-all ${
+          className={`inline-flex items-center gap-2 px-4 py-2.5 text-[12px] font-medium transition-colors ${
             isSpicyActive
-              ? 'bg-red-900/60 text-red-300 border border-red-500/30 cursor-not-allowed'
-              : 'bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white shadow-lg shadow-red-500/20'
+              ? 'bg-paper-deep text-ink-muted border border-rule cursor-not-allowed'
+              : 'bg-accent text-paper hover:bg-accent-deep'
           }`}
         >
-          <Zap className="w-4 h-4" />
+          <Zap className="w-3.5 h-3.5" />
           <span>
             {isSpicyActive
-              ? (lang === 'id' ? 'SAMBAL AKTIF! (+2X)' : 'SAMBAL BLAST ACTIVE!')
-              : (lang === 'id' ? 'AKTIFKAN SAMBAL BLAST (+500)' : 'TRIGGER SAMBAL BLAST (+500)')}
+              ? (lang === 'id' ? 'Sambal aktif (+2x)' : 'Sambal active (+2x)')
+              : (lang === 'id' ? 'Sambal blast (+500)' : 'Sambal blast (+500)')}
           </span>
         </button>
       </div>

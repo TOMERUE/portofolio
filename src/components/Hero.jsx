@@ -1,214 +1,119 @@
 import React from 'react';
-import { Gamepad2, Sparkles, ArrowRight, FileText, ChevronDown, Layers, Code2, Flame } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, ArrowDown } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 export const Hero = ({ lang, onOpenProject }) => {
   const { profile, projects } = portfolioData;
 
   return (
-    <section id="home" className="relative min-h-screen pt-28 pb-16 flex items-center justify-center bg-nusantara-mesh bg-batik-grid overflow-hidden">
-      {/* Ambient background glows */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[550px] h-[350px] bg-gradient-to-tr from-[#d9532f]/20 via-[#f59e0b]/15 to-[#10b981]/15 rounded-full blur-[110px] pointer-events-none" />
+    <section id="home" className="relative pt-32 pb-20 sm:pt-40 sm:pb-28">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-start">
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          {/* Left Column: Headline & Intro */}
-          <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-            
-            {/* Status Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#182332]/90 border border-amber-500/30 text-xs font-mono-game shadow-lg">
-              <span className="flex h-2 w-2 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
-              </span>
-              <span className="text-amber-300 font-medium">
+          <div className="lg:col-span-7">
+            <div className="eyebrow">Portofolio 2026 — Game Design</div>
+
+            <h1 className="mt-6 font-serif text-[2.6rem] leading-[1.05] sm:text-6xl lg:text-[4.25rem] text-ink">
+              {lang === 'id' ? (
+                <>
+                  Game yang tumbuh dari{' '}
+                  <em className="italic text-accent">cerita Nusantara.</em>
+                </>
+              ) : (
+                <>
+                  Games that grow from{' '}
+                  <em className="italic text-accent">Indonesian stories.</em>
+                </>
+              )}
+            </h1>
+
+            <div className="mt-7 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-muted">
+              <span className="inline-flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-olive" />
                 {lang === 'id' ? profile.status.id : profile.status.en}
               </span>
+              <span className="hidden sm:inline text-rule">/</span>
+              <span>Based in Indonesia</span>
             </div>
 
-            {/* Main Title & Hero Name */}
-            <div className="space-y-2">
-              <div className="text-xs sm:text-sm font-mono-game uppercase tracking-widest text-slate-400">
-                {profile.role}
-              </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white font-heading leading-tight">
-                {lang === 'id' ? (
-                  <>
-                    Membawa <span className="text-gradient-fire">Budaya & Folklore</span> ke Dunia Game.
-                  </>
-                ) : (
-                  <>
-                    Bringing <span className="text-gradient-fire">Indonesian Folklore</span> to Video Games.
-                  </>
-                )}
-              </h1>
-            </div>
-
-            {/* Sub-tagline & Bio */}
-            <p className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed mx-auto lg:mx-0">
+            <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-ink-soft">
               {lang === 'id' ? profile.bio.id : profile.bio.en}
             </p>
 
-            {/* CTA Action Buttons */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3.5 pt-2">
+            <div className="mt-9 flex flex-wrap items-center gap-6">
               <a
                 href="#projects"
-                className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#d9532f] to-[#f59e0b] hover:from-[#c24624] hover:to-[#e08e07] text-white font-semibold text-sm sm:text-base flex items-center gap-2.5 shadow-xl shadow-amber-500/25 hover:shadow-amber-500/40 transition-all hover:translate-y-[-2px]"
+                className="inline-flex items-center gap-2 bg-accent text-paper px-5 py-3 text-sm font-medium hover:bg-accent-deep transition-colors"
               >
-                <Gamepad2 className="w-5 h-5" />
-                <span>{lang === 'id' ? 'Jelajahi Proyek Game' : 'Explore Game Projects'}</span>
+                {lang === 'id' ? 'Lihat Proyek' : 'View Projects'}
                 <ArrowRight className="w-4 h-4" />
               </a>
-
-              <a
-                href="#gdd"
-                className="px-5 py-3.5 rounded-xl bg-[#151e2b] hover:bg-[#1c283a] text-slate-200 border border-white/15 font-semibold text-sm sm:text-base flex items-center gap-2 transition-all hover:border-amber-500/40"
-              >
-                <FileText className="w-4 h-4 text-amber-400" />
-                <span>{lang === 'id' ? 'Metodologi GDD' : 'GDD Methodology'}</span>
-              </a>
-
-              <a
-                href="#contact"
-                className="px-5 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 font-medium text-sm sm:text-base border border-white/10 transition-colors"
-              >
-                {lang === 'id' ? 'Kontak' : 'Contact'}
+              <a href="#gdd" className="text-sm text-ink editorial-link">
+                {lang === 'id' ? 'Metodologi GDD' : 'GDD Methodology'}
               </a>
             </div>
 
-            {/* Highlights Stats Ribbon */}
-            <div className="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-xl mx-auto lg:mx-0">
+            <dl className="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-8 border-t border-rule pt-7">
               {profile.stats.map((stat, idx) => (
-                <div key={idx} className="p-3 rounded-xl bg-[#131b26]/80 border border-white/10 text-center space-y-0.5">
-                  <div className="text-xl sm:text-2xl font-bold font-mono-game text-amber-400">
-                    {stat.id}
-                  </div>
-                  <div className="text-[11px] text-slate-400 leading-tight">
+                <div key={idx}>
+                  <dt className="font-serif text-2xl text-ink">{stat.id}</dt>
+                  <dd className="mt-1 font-mono text-[10px] leading-relaxed uppercase tracking-[0.12em] text-ink-muted">
                     {lang === 'id' ? stat.labelId : stat.labelEn}
-                  </div>
+                  </dd>
                 </div>
+              ))}
+            </dl>
+          </div>
+
+          <div className="lg:col-span-5 lg:pt-4">
+            <div className="flex items-baseline justify-between border-b border-ink pb-3">
+              <h2 className="font-serif text-xl text-ink">
+                {lang === 'id' ? 'Karya Pilihan' : 'Selected Work'}
+              </h2>
+              <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-muted">
+                03 — 2026
+              </span>
+            </div>
+
+            <div className="divide-y divide-rule">
+              {projects.map((project, idx) => (
+                <button
+                  key={project.id}
+                  onClick={() => onOpenProject(project)}
+                  className="group w-full text-left py-5 flex items-start gap-4"
+                >
+                  <span className="font-mono text-[11px] text-ink-muted pt-1.5">
+                    0{idx + 1}
+                  </span>
+                  <span className="flex-1">
+                    <span className="block font-mono text-[10px] uppercase tracking-[0.14em] text-accent mb-1">
+                      {project.genre.split('/')[0].trim()}
+                    </span>
+                    <span className="block font-serif text-lg text-ink group-hover:text-accent transition-colors">
+                      {project.title}
+                    </span>
+                  </span>
+                  <ArrowUpRight className="w-4 h-4 mt-1.5 text-ink-muted group-hover:text-accent transition-colors" />
+                </button>
               ))}
             </div>
 
-          </div>
-
-          {/* Right Column: Interactive Featured Game Showcase Cards */}
-          <div className="lg:col-span-5 relative">
-            <div className="relative space-y-4">
-              
-              {/* Card 1: B4B1 Ngepet Highlight */}
-              <div 
-                onClick={() => onOpenProject(projects[0])}
-                className="cursor-pointer group relative p-5 rounded-2xl bg-gradient-to-br from-[#1e1518] to-[#121822] border border-red-500/30 hover:border-red-500/60 shadow-xl transition-all duration-300 hover:-translate-y-1"
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl p-2.5 rounded-xl bg-red-500/10 border border-red-500/20">
-                      🐗
-                    </span>
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-mono-game text-red-400 font-semibold">
-                          FOLKLORE STEALTH
-                        </span>
-                        <span className="text-[10px] bg-red-500/20 text-red-300 px-2 py-0.5 rounded font-mono-game">
-                          GDD Spec
-                        </span>
-                      </div>
-                      <h3 className="text-lg font-bold text-white group-hover:text-amber-300 transition-colors">
-                        B4B1 Ngepet
-                      </h3>
-                    </div>
-                  </div>
-                  <span className="p-2 rounded-lg bg-white/5 group-hover:bg-amber-500/20 text-slate-400 group-hover:text-amber-300 transition-colors">
-                    <ArrowRight className="w-4 h-4" />
-                  </span>
-                </div>
-                <p className="mt-2 text-xs text-slate-300 line-clamp-2">
-                  {lang === 'id' ? projects[0].shortDesc.id : projects[0].shortDesc.en}
-                </p>
-              </div>
-
-              {/* Card 2: Brutal Kitchen Survival Highlight */}
-              <div 
-                onClick={() => onOpenProject(projects[1])}
-                className="cursor-pointer group relative p-5 rounded-2xl bg-gradient-to-br from-[#201910] to-[#121822] border border-amber-500/30 hover:border-amber-500/60 shadow-xl transition-all duration-300 hover:-translate-y-1 sm:translate-x-3"
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20">
-                      🔪
-                    </span>
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-mono-game text-amber-400 font-semibold">
-                          PIXEL ROGUELIKE
-                        </span>
-                        <span className="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-mono-game">
-                          Unity 2D
-                        </span>
-                      </div>
-                      <h3 className="text-lg font-bold text-white group-hover:text-amber-300 transition-colors">
-                        Brutal Kitchen Survival
-                      </h3>
-                    </div>
-                  </div>
-                  <span className="p-2 rounded-lg bg-white/5 group-hover:bg-amber-500/20 text-slate-400 group-hover:text-amber-300 transition-colors">
-                    <ArrowRight className="w-4 h-4" />
-                  </span>
-                </div>
-                <p className="mt-2 text-xs text-slate-300 line-clamp-2">
-                  {lang === 'id' ? projects[1].shortDesc.id : projects[1].shortDesc.en}
-                </p>
-              </div>
-
-              {/* Card 3: Sumpit Guardian Highlight */}
-              <div 
-                onClick={() => onOpenProject(projects[2])}
-                className="cursor-pointer group relative p-5 rounded-2xl bg-gradient-to-br from-[#0c1f19] to-[#121822] border border-emerald-500/30 hover:border-emerald-500/60 shadow-xl transition-all duration-300 hover:-translate-y-1"
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
-                      🍜
-                    </span>
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-mono-game text-emerald-400 font-semibold">
-                          STREET FOOD DEFENSE
-                        </span>
-                        <span className="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-mono-game">
-                          Interactive
-                        </span>
-                      </div>
-                      <h3 className="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">
-                        Sumpit Guardian: Mie Ayam Edition
-                      </h3>
-                    </div>
-                  </div>
-                  <span className="p-2 rounded-lg bg-white/5 group-hover:bg-emerald-500/20 text-slate-400 group-hover:text-emerald-300 transition-colors">
-                    <ArrowRight className="w-4 h-4" />
-                  </span>
-                </div>
-                <p className="mt-2 text-xs text-slate-300 line-clamp-2">
-                  {lang === 'id' ? projects[2].shortDesc.id : projects[2].shortDesc.en}
-                </p>
-              </div>
-
-            </div>
+            <a
+              href="#projects"
+              className="mt-6 inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-ink hover:text-accent transition-colors"
+            >
+              {lang === 'id' ? 'Semua proyek & GDD' : 'All projects & GDDs'}
+              <ArrowRight className="w-3.5 h-3.5" />
+            </a>
           </div>
 
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="mt-12 flex justify-center">
-          <a
-            href="#about"
-            className="flex flex-col items-center gap-1 text-slate-400 hover:text-amber-400 transition-colors text-xs font-mono-game"
-          >
-            <span>{lang === 'id' ? 'GULIR KE BAWAH' : 'SCROLL TO EXPLORE'}</span>
-            <ChevronDown className="w-4 h-4 animate-bounce" />
+        <div className="mt-20 pt-6 border-t border-rule flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.16em] text-ink-muted">
+          <span className="hidden sm:inline">Unity · C# · Game Design Document · Pixel Art</span>
+          <a href="#about" className="inline-flex items-center gap-2 hover:text-accent transition-colors">
+            {lang === 'id' ? 'Kenali saya' : 'About me'}
+            <ArrowDown className="w-3.5 h-3.5" />
           </a>
         </div>
       </div>

@@ -304,12 +304,12 @@ export const portfolioData = {
     quoteEn: "“Video games are the most powerful interactive canvas to preserve and project rich local heritage onto the modern global stage.”",
     paragraphsId: [
       "Perjalanan saya di dunia game development berakar dari ketertarikan mendalam pada interaktivitas dan penceritaan budaya. Sebagai mahasiswa Game Design, saya melihat bahwa Indonesia memiliki lautan inspirasi yang belum terjamah di ranah game internasional — mulai dari mistisisme mitologi daerah, kehangatan kehidupan gerobak street food, hingga dinamika sosial urban yang penuh warna.",
-      "Spesialisasi saya berada pada perpaduan dua pilar penting: **Game Design & Dokumentasi (GDD)** yang presisi dan terstruktur (seperti GDD 31-halaman Brutal Kitchen Survival dan B4B1 Ngepet), serta **Implementasi Teknis di Unity Engine**. Saya senang memecah konsep abstrak menjadi mekanika konkret yang terukur, merancang state machine AI, dan mengemasnya dengan visual pixel art atau 2D art yang menawan.",
+      "Spesialisasi saya berada pada perpaduan dua pilar penting: Game Design & Dokumentasi (GDD) yang presisi dan terstruktur (seperti GDD 31-halaman Brutal Kitchen Survival dan B4B1 Ngepet), serta Implementasi Teknis di Unity Engine. Saya senang memecah konsep abstrak menjadi mekanika konkret yang terukur, merancang state machine AI, dan mengemasnya dengan visual pixel art atau 2D art yang menawan.",
       "Bagi saya, game yang hebat bukan hanya yang memiliki visual indah, tetapi game yang memiliki 'game feel' renyah, aturan main yang elegan, dan jiwa cerita yang berkesan di benak pemain."
     ],
     paragraphsEn: [
       "My journey in game development stems from a profound fascination with interactive storytelling and cultural worldbuilding. As a Game Design student, I believe Indonesia holds an untapped treasure trove of inspiration — from mystical urban legends and folklore to the energetic warmth of street food carts and vibrant community dynamics.",
-      "My core strengths bridge two vital domains: structured **Game Design Documentation (GDD)** with clear systemic balancing (such as the 31-page Brutal Kitchen Survival and B4B1 Ngepet GDDs), and **Hands-on Unity Engine Implementation**. I love transforming abstract concepts into mathematically sound game loops, designing responsive enemy AI, and crafting complementary 2D/Pixel Art assets.",
+      "My core strengths bridge two vital domains: structured Game Design Documentation (GDD) with clear systemic balancing (such as the 31-page Brutal Kitchen Survival and B4B1 Ngepet GDDs), and Hands-on Unity Engine Implementation. I love transforming abstract concepts into mathematically sound game loops, designing responsive enemy AI, and crafting complementary 2D/Pixel Art assets.",
       "To me, a great game goes beyond pretty visuals — it thrives on punchy game feel, elegant rule design, and an unforgettable cultural soul that resonates with players worldwide."
     ]
   }

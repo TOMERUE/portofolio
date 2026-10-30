@@ -1,128 +1,112 @@
 import React, { useState, useEffect } from 'react';
-import { Gamepad2, FileText, Sparkles, Menu, X, Globe, Download, Mail } from 'lucide-react';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 
-export const Navbar = ({ lang, setLang, activeSection }) => {
+export const Navbar = ({ lang, setLang }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 24);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navLinks = [
-    { href: '#home', labelId: 'Beranda', labelEn: 'Home' },
     { href: '#about', labelId: 'Tentang', labelEn: 'About' },
-    { href: '#projects', labelId: 'Proyek Game', labelEn: 'Projects' },
+    { href: '#projects', labelId: 'Proyek', labelEn: 'Projects' },
     { href: '#skills', labelId: 'Keahlian', labelEn: 'Skills' },
-    { href: '#gdd', labelId: 'Dokumen GDD', labelEn: 'GDD Specs' },
+    { href: '#gdd', labelId: 'GDD', labelEn: 'GDD' },
     { href: '#contact', labelId: 'Kontak', labelEn: 'Contact' }
   ];
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-      isScrolled 
-        ? 'bg-[#0c1017]/90 backdrop-blur-md border-b border-white/10 shadow-lg shadow-black/30 py-3' 
-        : 'bg-transparent py-5'
-    }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        
-        {/* Brand Logo / Avatar Badge */}
+    <header
+      className={`fixed top-0 left-0 right-0 z-40 transition-colors duration-300 ${
+        isScrolled
+          ? 'bg-paper/95 border-b border-rule'
+          : 'bg-transparent border-b border-transparent'
+      }`}
+    >
+      <div className="max-w-6xl mx-auto px-6 lg:px-8 flex items-center justify-between h-[72px]">
         <a href="#home" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#d9532f] via-[#f59e0b] to-[#10b981] p-0.5 shadow-md group-hover:scale-105 transition-transform">
-            <div className="w-full h-full bg-[#0f151e] rounded-[10px] flex items-center justify-center">
-              <Gamepad2 className="w-5 h-5 text-amber-400 group-hover:rotate-12 transition-transform" />
-            </div>
-          </div>
-          <div>
-            <span className="font-bold text-base sm:text-lg text-white tracking-tight flex items-center gap-1.5 font-heading">
-              Feri Yusgiantoro
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span className="w-9 h-9 border border-ink flex items-center justify-center font-mono text-xs tracking-tight text-ink group-hover:bg-ink group-hover:text-paper transition-colors">
+            FY
+          </span>
+          <span className="leading-tight">
+            <span className="block font-serif text-lg text-ink">Feri Yusgiantoro</span>
+            <span className="block font-mono text-[10px] uppercase tracking-[0.16em] text-ink-muted">
+              Game Design &amp; Unity
             </span>
-            <span className="text-[11px] font-mono-game text-amber-400/90 block -mt-0.5">
-              Unity Dev • GDD Designer
-            </span>
-          </div>
+          </span>
         </a>
 
-        {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-1 bg-[#141c26]/70 border border-white/10 px-3 py-1.5 rounded-full backdrop-blur-sm">
+        <nav className="hidden md:flex items-center gap-7">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="px-3.5 py-1.5 rounded-full text-xs font-medium text-slate-300 hover:text-white hover:bg-white/10 transition-all"
+              className="text-[13px] text-ink-soft hover:text-accent transition-colors"
             >
               {lang === 'id' ? link.labelId : link.labelEn}
             </a>
           ))}
         </nav>
 
-        {/* Action Buttons & Language Switcher */}
-        <div className="hidden sm:flex items-center gap-2.5">
-          {/* Language Toggle Button */}
+        <div className="hidden sm:flex items-center gap-4">
           <button
             onClick={() => setLang(lang === 'id' ? 'en' : 'id')}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 text-xs font-mono-game transition-colors"
+            className="font-mono text-[11px] tracking-[0.12em] text-ink-muted hover:text-accent transition-colors"
             title={lang === 'id' ? 'Switch to English' : 'Ganti ke Bahasa Indonesia'}
           >
-            <Globe className="w-3.5 h-3.5 text-amber-400" />
-            <span className="font-bold">{lang === 'id' ? '🇮🇩 ID' : '🇬🇧 EN'}</span>
+            {lang === 'id' ? 'ID / EN' : 'EN / ID'}
           </button>
 
-          {/* Contact CTA */}
           <a
             href="#contact"
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#d9532f] to-[#f59e0b] hover:from-[#c24624] hover:to-[#e08e07] text-white text-xs font-semibold shadow-md shadow-amber-500/20 transition-all hover:shadow-amber-500/40"
+            className="inline-flex items-center gap-1.5 bg-ink text-paper px-4 py-2.5 text-[12px] font-medium hover:bg-accent transition-colors"
           >
-            <Mail className="w-3.5 h-3.5" />
             <span>{lang === 'id' ? 'Hubungi Saya' : 'Get in Touch'}</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
           </a>
         </div>
 
-        {/* Mobile Menu Trigger */}
-        <div className="flex sm:hidden items-center gap-2">
+        <div className="flex sm:hidden items-center gap-3">
           <button
             onClick={() => setLang(lang === 'id' ? 'en' : 'id')}
-            className="px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-mono-game text-amber-400"
+            className="font-mono text-[11px] text-ink-muted"
           >
             {lang === 'id' ? 'ID' : 'EN'}
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10"
-            aria-label="Buka Menu"
+            className="p-2 text-ink"
+            aria-label="Buka menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Dropdown Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#0e141d] border-b border-white/10 px-4 py-4 space-y-2 animate-fadeIn">
+        <div className="md:hidden bg-paper border-t border-rule px-6 py-4">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:bg-white/10 transition-colors"
+              className="block py-3 border-b border-rule/70 text-sm text-ink-soft"
             >
               {lang === 'id' ? link.labelId : link.labelEn}
             </a>
           ))}
-          <div className="pt-2 border-t border-white/10">
-            <a
-              href="#contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-center py-2.5 rounded-xl bg-gradient-to-r from-[#d9532f] to-[#f59e0b] text-white text-sm font-semibold"
-            >
-              {lang === 'id' ? 'Hubungi Saya' : 'Get in Touch'}
-            </a>
-          </div>
+          <a
+            href="#contact"
+            onClick={() => setMobileMenuOpen(false)}
+            className="mt-4 inline-flex items-center gap-1.5 bg-ink text-paper px-4 py-2.5 text-xs"
+          >
+            {lang === 'id' ? 'Hubungi Saya' : 'Get in Touch'}
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </a>
         </div>
       )}
     </header>

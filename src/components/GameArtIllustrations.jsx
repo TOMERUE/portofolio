@@ -8,10 +8,7 @@ export const GameArtIllustration = ({ type, className = "w-full h-full" }) => {
         {/* Isometric Grid Background */}
         <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,#d9532f_1px,transparent_1px),linear-gradient(to_bottom,#d9532f_1px,transparent_1px)] bg-[size:28px_28px] [transform:rotateX(55deg)_rotateZ(-45deg)]" />
         
-        {/* Radial Glow */}
-        <div className="absolute w-48 h-48 bg-[#d9532f]/25 rounded-full blur-2xl animate-pulse" />
-
-        <svg viewBox="0 0 400 240" className="w-full h-full object-contain relative z-10 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]">
+        <svg viewBox="0 0 400 240" className="w-full h-full object-contain relative z-10">
           {/* Isometric Tile Base */}
           <polygon points="200,190 320,130 200,70 80,130" fill="#1e2638" stroke="#f59e0b" strokeWidth="2" strokeOpacity="0.4" />
           <polygon points="80,130 200,190 200,210 80,150" fill="#141a26" />
@@ -36,7 +33,6 @@ export const GameArtIllustration = ({ type, className = "w-full h-full" }) => {
             <circle cx="70" cy="39" r="1.5" fill="#1c0505" />
             <circle cx="74" cy="39" r="1.5" fill="#1c0505" />
             {/* Glowing Red Eyes */}
-            <ellipse cx="55" cy="28" rx="4" ry="3" fill="#ef4444" className="animate-ping" style={{ transformOrigin: '55px 28px' }} />
             <ellipse cx="55" cy="28" rx="3" ry="2" fill="#fca5a5" />
             {/* Small Glowing Fangs */}
             <polygon points="68,43 72,49 70,43" fill="#fef08a" />
@@ -75,9 +71,9 @@ export const GameArtIllustration = ({ type, className = "w-full h-full" }) => {
           </defs>
         </svg>
 
-        <div className="absolute top-3 left-3 bg-red-950/80 border border-red-500/40 text-red-200 text-xs px-2.5 py-1 rounded-md font-mono-game flex items-center gap-1.5 shadow-md">
-          <span className="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
-          <span>STEALTH ACTIVE • LILIN 87%</span>
+        <div className="absolute top-3 left-3 bg-black/60 border border-white/20 text-white/70 text-[10px] tracking-[0.08em] px-2 py-1 font-mono flex items-center gap-1.5">
+          <span className="w-1.5 h-1.5 bg-red-500"></span>
+          <span>STEALTH • LILIN 87%</span>
         </div>
       </div>
     );
@@ -89,10 +85,7 @@ export const GameArtIllustration = ({ type, className = "w-full h-full" }) => {
         {/* Pixel / Checker Kitchen Floor */}
         <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#f59e0b_1px,transparent_1px)] [background-size:16px_16px]" />
         
-        {/* Fire Glow */}
-        <div className="absolute w-52 h-52 bg-[#f59e0b]/20 rounded-full blur-2xl" />
-
-        <svg viewBox="0 0 400 240" className="w-full h-full object-contain relative z-10 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]">
+        <svg viewBox="0 0 400 240" className="w-full h-full object-contain relative z-10">
           {/* Industrial Iron Kitchen Counter */}
           <rect x="50" y="110" width="300" height="90" rx="8" fill="#1f2937" stroke="#4b5563" strokeWidth="2" />
           <rect x="58" y="118" width="284" height="20" fill="#374151" rx="4" />
@@ -155,8 +148,8 @@ export const GameArtIllustration = ({ type, className = "w-full h-full" }) => {
           </g>
         </svg>
 
-        <div className="absolute top-3 left-3 bg-amber-950/80 border border-amber-500/40 text-amber-200 text-xs px-2.5 py-1 rounded-md font-mono-game flex items-center gap-1.5 shadow-md">
-          <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+        <div className="absolute top-3 left-3 bg-black/60 border border-white/20 text-white/70 text-[10px] tracking-[0.08em] px-2 py-1 font-mono flex items-center gap-1.5">
+          <span className="w-1.5 h-1.5 bg-amber-500"></span>
           <span>SHIFT 04 • WAVE 12/20</span>
         </div>
       </div>
@@ -169,10 +162,7 @@ export const GameArtIllustration = ({ type, className = "w-full h-full" }) => {
       {/* Bamboo / Traditional Grid */}
       <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:20px_20px]" />
       
-      {/* Emerald Warm Glow */}
-      <div className="absolute w-52 h-52 bg-[#10b981]/20 rounded-full blur-2xl animate-pulse" />
-
-      <svg viewBox="0 0 400 240" className="w-full h-full object-contain relative z-10 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]">
+      <svg viewBox="0 0 400 240" className="w-full h-full object-contain relative z-10">
         {/* Traditional Wooden Table Surface */}
         <ellipse cx="200" cy="185" rx="170" ry="40" fill="#2e1005" stroke="#78350f" strokeWidth="2" />
         <ellipse cx="200" cy="180" rx="160" ry="35" fill="#451a03" />
@@ -216,9 +206,9 @@ export const GameArtIllustration = ({ type, className = "w-full h-full" }) => {
           <circle cx="84" cy="37" r="1.5" fill="#fef08a" />
 
           {/* Steam Wafts */}
-          <path d="M60,10 Q65,0 60,-12" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" opacity="0.6" fill="none" className="animate-pulse" />
-          <path d="M80,8 Q85,-3 80,-16" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" opacity="0.7" fill="none" className="animate-pulse" />
-          <path d="M100,12 Q105,2 100,-10" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" opacity="0.5" fill="none" className="animate-pulse" />
+          <path d="M60,10 Q65,0 60,-12" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" opacity="0.4" fill="none" />
+          <path d="M80,8 Q85,-3 80,-16" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" opacity="0.5" fill="none" />
+          <path d="M100,12 Q105,2 100,-10" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" opacity="0.3" fill="none" />
         </g>
 
         {/* The Guardian Bamboo Chopsticks (Sumpit) */}
@@ -242,8 +232,8 @@ export const GameArtIllustration = ({ type, className = "w-full h-full" }) => {
         </g>
       </svg>
 
-      <div className="absolute top-3 left-3 bg-emerald-950/80 border border-emerald-500/40 text-emerald-200 text-xs px-2.5 py-1 rounded-md font-mono-game flex items-center gap-1.5 shadow-md">
-        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+      <div className="absolute top-3 left-3 bg-black/60 border border-white/20 text-white/70 text-[10px] tracking-[0.08em] px-2 py-1 font-mono flex items-center gap-1.5">
+        <span className="w-1.5 h-1.5 bg-emerald-400"></span>
         <span>MIE AYAM DEFENSE • COMBO x5</span>
       </div>
     </div>
